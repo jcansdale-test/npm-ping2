@@ -1,0 +1,14 @@
+on: [push, workflow_dispatch]
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          registry-url: https://npm.pkg.github.com
+
+      - run: npm ping --registry https://npm.pkg.github.com
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
